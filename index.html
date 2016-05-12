@@ -19,7 +19,11 @@
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
     <script src="js/form.js"></script>
-
+    <script>
+        window.addEventListener('native.keyboardshow', function(){
+          document.body.classList.add('keyboard-open');
+        });
+    </script>
    
 </head>
  
