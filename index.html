@@ -2,6 +2,7 @@
 <html lang="en" ng-app="starter">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0" />
     <link rel="icon" href="img/favicon.png">
  
     <title>Website Responsive Calculator</title>
@@ -44,13 +45,24 @@
                     <form name="sentMessage" id="contactForm" novalidate="">
                         <div class="row control-group control-title">
                             <div class="form-group col-xs-12 controls">
-                                <label>CLASS NAME</label>
+                                <label>CHOOSE CLASS / ID</label>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Your Class Name</label>
-                                <input type="text" class="form-control" placeholder="Your Class Name" id="className" ng-model="className" ng-change="calc()" required="">
+                                <label>Your Class / Id</label>
+                                <select name="element-name" id="element-id" class="form-control" ng-change="changetype()" ng-options="item.name for item in items" ng-model="elementType"></select>
+                            </div>
+                        </div>
+                        <div class="row control-group control-title">
+                            <div class="form-group col-xs-12 controls">
+                                <label>{{elementType.name}}</label>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Your {{elementType.name}}</label>
+                                <input type="text" class="form-control" placeholder="Your {{elementType.name}}" id="className" ng-model="className" ng-change="calc()" required="">
                             </div>
                         </div>
                         <div class="row control-group control-title">
@@ -88,7 +100,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="calculator col-right col-lg-5">
+                <div class="calculator col-right col-lg-5 col-xs-12">
                     <figure class="highlight">
                         <p ng-bind-html="cssStyle"></p>
                     </figure>

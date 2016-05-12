@@ -241,7 +241,8 @@ section.success a.active {
   border-bottom: 1px solid #eeeeee;
 }
 .floating-label-form-group input,
-.floating-label-form-group textarea {
+.floating-label-form-group textarea,
+.floating-label-form-group select {
   z-index: 1;
   position: relative;
   padding-right: 0;
@@ -410,6 +411,12 @@ footer .footer-below {
   padding: 25px;
   color: red;
 }
+.floating-label-form-group select {
+  background: #dddddd;
+  color: red;
+  height: 50px;
+  padding: 0 25px;
+}
 .col-right {
   float: right;
 }
@@ -454,4 +461,12 @@ footer .footer-below {
 #result {
   background: #ea4b38;
   color: #ffffff;
+}
+
+@media screen and (max-width: 1199px) {
+  .col-right {
+    float: none;
+    margin-top: 20px;
+    overflow: hidden;
+  }
 }
