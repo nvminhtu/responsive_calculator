@@ -33,9 +33,15 @@ angular.module('starter.controllers', ['ngSanitize'])
     }
 
     if($scope.className) {
-      cssClassName = $scope.className;
+      cssClassName = "." + $scope.className;
+      if($scope.elementType.id == 'id') {
+        cssClassName =  "#" + $scope.className;
+      }
     } else {
       cssClassName = "your_class_name";
+      if($scope.elementType.id == 'id') {
+        cssClassName = "your_id_name";
+      }
     }
 
     totalPercent = ((parseFloat(widthChild) / parseFloat(widthParent)) * 100).toFixed(2);
@@ -45,7 +51,7 @@ angular.module('starter.controllers', ['ngSanitize'])
     
 
     $scope.cssStyle = 
-      "." + cssClassName  + "&nbsp;{&nbsp;<br />&nbsp;&nbsp;&nbsp;"
+      cssClassName  + "&nbsp;{&nbsp;<br />&nbsp;&nbsp;&nbsp;"
                     + cssWidth 
                     + "<br />&nbsp;&nbsp;&nbsp;"
                     + cssMargin
@@ -53,4 +59,49 @@ angular.module('starter.controllers', ['ngSanitize'])
                     + "}";
   };
 
+  $scope.items = [
+    {id: 'class', name: 'Class Name'},
+    {id: 'id', name: 'ID Name'}
+  ];
+  $scope.elementType = $scope.items[0];
+  $scope.changetype = function() {
+    if($scope.widthChild) {
+      widthChild = $scope.widthChild;
+    } else {
+      widthChild = 0;
+    }
+
+
+    if($scope.widthParent) {
+      widthParent = $scope.widthParent;
+    } else {
+      widthParent = 1; //because this denominator should not be 0
+    }
+
+    if($scope.className) {
+      cssClassName = "." + $scope.className;
+      if($scope.elementType.id == 'id') {
+        cssClassName =  "#" + $scope.className;
+      }
+    } else {
+      cssClassName = "your_class_name";
+      if($scope.elementType.id == 'id') {
+        cssClassName = "your_id_name";
+      }
+    }
+
+    totalPercent = ((parseFloat(widthChild) / parseFloat(widthParent)) * 100).toFixed(2);
+    $scope.total =  totalPercent.toString().concat("%");
+    
+    cssWidth = "width: ".concat($scope.total) + ";";
+    
+
+    $scope.cssStyle = 
+      cssClassName  + "&nbsp;{&nbsp;<br />&nbsp;&nbsp;&nbsp;"
+                    + cssWidth 
+                    + "<br />&nbsp;&nbsp;&nbsp;"
+                    + cssMargin
+                    + "<br />"
+                    + "}";
+  }
 });
