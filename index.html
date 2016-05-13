@@ -2,6 +2,7 @@
 <html lang="en" ng-app="starter">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0" />
     <link rel="icon" href="img/favicon.png">
  
     <title>Website Responsive Calculator</title>
@@ -15,15 +16,11 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.4.5/angular-route.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular-sanitize.js"></script>
+    <script   src="https://code.jquery.com/jquery-1.12.3.min.js"   integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="   crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
     <script src="js/form.js"></script>
-    <script>
-        window.addEventListener('native.keyboardshow', function(){
-          document.body.classList.add('keyboard-open');
-        });
-    </script>
    
 </head>
  
@@ -48,35 +45,46 @@
                     <form name="sentMessage" id="contactForm" novalidate="">
                         <div class="row control-group control-title">
                             <div class="form-group col-xs-12 controls">
-                                <label>CLASS NAME</label>
+                                <label>CHOOSE CLASS / ID</label>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Your Class Name</label>
-                                <input type="text" class="form-control" placeholder="Your Class Name" id="className" ng-model="className" ng-change="calc()" required="">
+                                <label>Your Class / Id</label>
+                                <select name="element-name" id="element-id" class="form-control" ng-change="changetype()" ng-options="item.name for item in items" ng-model="elementType"></select>
+                            </div>
+                        </div>
+                        <div class="row control-group control-title">
+                            <div class="form-group col-xs-12 controls not-space">
+                                <label>{{elementType.name}} (Do not input white space)</label>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls not-space">
+                                <label>Your {{elementType.name}}</label>
+                                <input type="text" class="form-text" placeholder="Your {{elementType.name}}" id="className" ng-model="className" ng-change="calc()" required="">
                             </div>
                         </div>
                         <div class="row control-group control-title">
                             <div class="form-group col-xs-12 controls">
-                                <label>WIDTH OF CHILD ELEMENT</label>
+                                <label>WIDTH OF CHILD ELEMENT (PX)</label>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>0</label>
-                                <input type="number" min="0" class="form-control" placeholder="0" id="widthChild" ng-model="widthChild" ng-change="calc()" required="">
+                                <input type="number" min="0" class="numberic form-text" placeholder="0" id="widthChild" ng-model="widthChild" ng-change="calc()" required=""  pattern="[0-9]*">
                             </div>
                         </div>
                         <div class="row control-group control-title">
                             <div class="form-group col-xs-12 controls">
-                                <label>WIDTH OF PARENT ELEMENT</label>
+                                <label>WIDTH OF PARENT ELEMENT (PX)</label>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>0</label>
-                                <input type="number" min="1" class="form-control" placeholder="1" id="widthParent" ng-model="widthParent" ng-change="calc()" required="">
+                                <input type="number" min="1" class="numberic form-text" placeholder="1" id="widthParent" ng-model="widthParent" ng-change="calc()" required=""  pattern="[0-9]*"/>
                             </div>
                         </div>
                         <div class="row control-group control-title">
@@ -87,12 +95,12 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>0</label>
-                                <input type="text" class="form-control" placeholder="0" id="result" value="{{total}}">
+                                <input type="text" class="form-text" placeholder="0" id="result" value="{{total}}"  />
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class="calculator col-right col-lg-5">
+                <div class="calculator col-right col-lg-5 col-xs-12">
                     <figure class="highlight">
                         <p ng-bind-html="cssStyle"></p>
                     </figure>
