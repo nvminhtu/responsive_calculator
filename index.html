@@ -16,11 +16,11 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.4.5/angular-route.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular-sanitize.js"></script>
+    <script   src="https://code.jquery.com/jquery-1.12.3.min.js"   integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="   crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
     <script src="js/form.js"></script>
-
    
 </head>
  
@@ -55,36 +55,36 @@
                             </div>
                         </div>
                         <div class="row control-group control-title">
-                            <div class="form-group col-xs-12 controls">
-                                <label>{{elementType.name}}</label>
+                            <div class="form-group col-xs-12 controls not-space">
+                                <label>{{elementType.name}} (Do not input white space)</label>
                             </div>
                         </div>
                         <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <div class="form-group col-xs-12 floating-label-form-group controls not-space">
                                 <label>Your {{elementType.name}}</label>
-                                <input type="text" class="form-control" placeholder="Your {{elementType.name}}" id="className" ng-model="className" ng-change="calc()" required="">
+                                <input type="text" class="form-text" placeholder="Your {{elementType.name}}" id="className" ng-model="className" ng-change="calc()" required="">
                             </div>
                         </div>
                         <div class="row control-group control-title">
                             <div class="form-group col-xs-12 controls">
-                                <label>WIDTH OF CHILD ELEMENT</label>
+                                <label>WIDTH OF CHILD ELEMENT (PX)</label>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>0</label>
-                                <input type="number" min="0" class="form-control" placeholder="0" id="widthChild" ng-model="widthChild" ng-change="calc()" required="">
+                                <input type="number" min="0" class="numberic form-text" placeholder="0" id="widthChild" ng-model="widthChild" ng-change="calc()" required=""  pattern="[0-9]*">
                             </div>
                         </div>
                         <div class="row control-group control-title">
                             <div class="form-group col-xs-12 controls">
-                                <label>WIDTH OF PARENT ELEMENT</label>
+                                <label>WIDTH OF PARENT ELEMENT (PX)</label>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>0</label>
-                                <input type="number" min="1" class="form-control" placeholder="1" id="widthParent" ng-model="widthParent" ng-change="calc()" required="">
+                                <input type="number" min="1" class="numberic form-text" placeholder="1" id="widthParent" ng-model="widthParent" ng-change="calc()" required=""  pattern="[0-9]*"/>
                             </div>
                         </div>
                         <div class="row control-group control-title">
@@ -95,7 +95,7 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>0</label>
-                                <input type="text" class="form-control" placeholder="0" id="result" value="{{total}}">
+                                <input type="text" class="form-text" placeholder="0" id="result" value="{{total}}"  />
                             </div>
                         </div>
                     </form>

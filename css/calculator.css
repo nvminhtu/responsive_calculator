@@ -408,7 +408,7 @@ footer .footer-below {
 }
 .floating-label-form-group input, .floating-label-form-group textarea {
   background: #dddddd;
-  padding: 25px;
+  padding: 10px;
   color: red;
 }
 .floating-label-form-group select {
@@ -469,4 +469,7 @@ footer .footer-below {
     margin-top: 20px;
     overflow: hidden;
   }
+}
+.form-text {
+  width: 100%;
 }
