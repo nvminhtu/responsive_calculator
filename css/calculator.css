@@ -415,17 +415,30 @@ footer .footer-below {
   background: #dddddd;
   color: red;
   height: 50px;
-  padding: 0 25px;
+  padding: 0 10px;
 }
 .col-right {
   float: right;
 }
 .highlight {
   margin: 20px 0;
+  color: #000;
+  background: linear-gradient(
+    to bottom,
+    #ddd,
+    #ddd 50%,
+    #eee 50%,
+    #eee
+  );
+  background-size: 100% 57px;
 }
 .highlight pre {
   background: #000;
   color: #fff;
+}
+.highlight .line {
+  display: inline-block;
+  margin-left: 20px;
 }
 /* do not group these rules */
 *::-webkit-input-placeholder {

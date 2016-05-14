@@ -11,52 +11,18 @@ angular.module('starter.controllers', ['ngSanitize'])
   var widthChild = 0,
       widthParent = 0,
       totalPercent = 0,
+      realPercent = 0,
       cssClassName =  "your_class_name",
-      cssMargin = "magin: 0 auto;"
-      cssWidth =  "";
+      cssAttr = {
+        "cssMargin": "magin: 0 auto;",
+        "cssWidth":  ""
+      };
 
   $scope.total = "0";
   $scope.cssStyle = "//Your CSS here";
   
   $scope.calc = function() {
-    if($scope.widthChild) {
-      widthChild = $scope.widthChild;
-    } else {
-      widthChild = 0;
-    }
-
-
-    if($scope.widthParent) {
-      widthParent = $scope.widthParent;
-    } else {
-      widthParent = 1; //because this denominator should not be 0
-    }
-
-    if($scope.className) {
-      cssClassName = "." + $scope.className;
-      if($scope.elementType.id == 'id') {
-        cssClassName =  "#" + $scope.className;
-      }
-    } else {
-      cssClassName = "your_class_name";
-      if($scope.elementType.id == 'id') {
-        cssClassName = "your_id_name";
-      }
-    }
-
-    totalPercent = ((parseFloat(widthChild) / parseFloat(widthParent)) * 100).toFixed(2);
-    $scope.total =  totalPercent.toString().concat("%");
-    
-    cssWidth = "width: ".concat($scope.total) + ";";
-    
-
-    $scope.cssStyle = 
-      cssClassName  + "&nbsp;{&nbsp;<br />&nbsp;&nbsp;&nbsp;"
-                    + cssWidth 
-                    + "<br />&nbsp;&nbsp;&nbsp;"
-                    + cssMargin
-                    + "<br />"
-                    + "}";
+    outputCssPercent();
   };
 
   $scope.items = [
@@ -65,6 +31,9 @@ angular.module('starter.controllers', ['ngSanitize'])
   ];
   $scope.elementType = $scope.items[0];
   $scope.changetype = function() {
+    outputCssPercent();
+  }
+  function outputCssPercent() {
     if($scope.widthChild) {
       widthChild = $scope.widthChild;
     } else {
@@ -79,9 +48,9 @@ angular.module('starter.controllers', ['ngSanitize'])
     }
 
     if($scope.className) {
-      cssClassName = "." + $scope.className;
+      cssClassName = ".".concat($scope.className);
       if($scope.elementType.id == 'id') {
-        cssClassName =  "#" + $scope.className;
+        cssClassName =  "#".concat($scope.className);
       }
     } else {
       cssClassName = "your_class_name";
@@ -91,17 +60,22 @@ angular.module('starter.controllers', ['ngSanitize'])
     }
 
     totalPercent = ((parseFloat(widthChild) / parseFloat(widthParent)) * 100).toFixed(2);
+    realPercent = totalPercent % 1;
+    if(realPercent === 0) {
+      totalPercent = parseInt(totalPercent);
+    }
     $scope.total =  totalPercent.toString().concat("%");
     
-    cssWidth = "width: ".concat($scope.total) + ";";
+    cssAttr["cssWidth"] = "width: ".concat($scope.total) + ";";
     
 
-    $scope.cssStyle = 
-      cssClassName  + "&nbsp;{&nbsp;<br />&nbsp;&nbsp;&nbsp;"
-                    + cssWidth 
-                    + "<br />&nbsp;&nbsp;&nbsp;"
-                    + cssMargin
-                    + "<br />"
-                    + "}";
+    $scope.cssStyle = cssClassName.concat("&nbsp;{<br />");
+    $.each(cssAttr, function(key, value){
+      value = "<span class='line'>".concat(value);
+      value = value.concat("</span>");
+      value = value.concat("<br />");
+      $scope.cssStyle = $scope.cssStyle.concat(value);
+    });
+    $scope.cssStyle = $scope.cssStyle.concat("}");
   }
 });
